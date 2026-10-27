@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hi" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DukaanOS - Dukaan Record, Stock & Online Showcase</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dukaan: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans Devanagari"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS & Print Sheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-emerald-200 selection:text-emerald-900">
+  
+  <!-- Main Reactive SPA Container -->
+  <div id="app">
+    <!-- App rendered dynamically via DukaanOS.render() -->
+    <div class="min-h-screen flex items-center justify-center bg-slate-50">
+      <div class="text-center space-y-3">
+        <div class="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p class="text-sm font-bold text-slate-600">DukaanOS load ho raha hai...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Container for Item/Customer/Tx Modals -->
+  <div id="modalContainer"></div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toastNotification" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 font-medium text-sm toast-slide-up text-white">
+    <span id="toastIcon"></span>
+    <span id="toastMessage"></span>
+  </div>
+
+  <!-- Printable Slip Container (Thermal Receipts & Mandi Parchi) -->
+  <div id="printableArea" class="hidden"></div>
+
+  <!-- App Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="app_views.js"></script>
+  <script src="app_modals.js"></script>
+
+  <script>
+    // Initialize DukaanOS once DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      window.app = new DukaanOS();
+      window.app.render();
+    });
+  </script>
+</body>
+</html>
